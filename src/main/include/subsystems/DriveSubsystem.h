@@ -10,9 +10,10 @@
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
 #include <units/voltage.h>
+#include <frc/SPI.h>
 
 #include <rev/CANSparkMax.h>
-#include <AHRS.h>
+#include "AHRS.h"
 
 
 #include "Constants.h"
@@ -134,15 +135,18 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // The robot's drive
   frc::DifferentialDrive m_drive{M_leftMotors, M_rightMotors};
 
+/*
   // The left-side drive encoder
   frc::Encoder m_leftEncoder;
 
   // The right-side drive encoder
   frc::Encoder m_rightEncoder;
+*/
 
-  // The gyro sensor
-  frc::ADXRS450_Gyro m_gyro;
 
+  //Nav-XMP board (This contains the Gyro Sensor)
+  AHRS ahrs{SPI::Port::kMXP};
+  
   // Odometry class for tracking robot pose
   frc::DifferentialDriveOdometry m_odometry;
 };
