@@ -6,10 +6,12 @@
 using namespace DriveConstants;
 
 DriveSubsystem::DriveSubsystem()
-    : m_left1{kLeftMotor1Port},
-      m_left2{kLeftMotor2Port},
-      m_right1{kRightMotor1Port},
-      m_right2{kRightMotor2Port},
+    : M_TopLeft{TopLeft ,rev::CANSparkMax::MotorType::kBrushless},
+      M_TopRight{TopRight, rev::CANSparkMax::MotorType::kBrushless},
+      M_MiddleLeft{MiddleLeft, rev::CANSparkMax::MotorType::kBrushless},
+      M_MiddleRight{MiddleRight, rev::CANSparkMax::MotorType::kBrushless},
+      M_BottomLeft{BottomLeft, rev::CANSparkMax::MotorType::kBrushless},
+      M_BottomRight{BottomRight, rev::CANSparkMax::MotorType::kBrushless},
       m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1]},
       m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1]},
       m_odometry{m_gyro.GetRotation2d()} {

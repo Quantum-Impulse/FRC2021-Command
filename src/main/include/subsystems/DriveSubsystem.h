@@ -118,12 +118,12 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // The motor controllers
-  rev::CANSparkMax M_TopLeft {TopLeft, rev::CANSparkMax::MotorType::kBrushless}; 
-  rev::CANSparkMax M_TopRight {TopRight, rev::CANSparkMax::MotorType::kBrushless}; 
-  rev::CANSparkMax M_MiddleLeft {MiddleLeft, rev::CANSparkMax::MotorType::kBrushless}; 
-  rev::CANSparkMax M_MiddleRight {MiddleRight, rev::CANSparkMax::MotorType::kBrushless}; 
-  rev::CANSparkMax M_BottomLeft {BottomLeft, rev::CANSparkMax::MotorType::kBrushless}; 
-  rev::CANSparkMax M_BottomRight {BottomRight, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_TopLeft ;
+  rev::CANSparkMax M_TopRight ;
+  rev::CANSparkMax M_MiddleLeft ;
+  rev::CANSparkMax M_MiddleRight ;
+  rev::CANSparkMax M_BottomLeft ;
+  rev::CANSparkMax M_BottomRight ;
 
   // The motors on the left side of the drive
   frc::SpeedControllerGroup M_leftMotors{M_TopLeft, M_MiddleLeft, M_BottomLeft};
