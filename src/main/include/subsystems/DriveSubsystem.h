@@ -118,21 +118,21 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // The motor controllers
-  rev::CANSparkMax{}; 
-  rev::CANSparkMax{}; 
-  rev::CANSparkMax{}; 
-  rev::CANSparkMax{}; 
-  rev::CANSparkMax{}; 
-  rev::CANSparkMax{}; 
+  rev::CANSparkMax M_TopLeft {TopLeft, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_TopRight {TopRight, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_MiddleLeft {MiddleLeft, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_MiddleRight {MiddleRight, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_BottomLeft {BottomLeft, rev::CANSparkMax::MotorType::kBrushless}; 
+  rev::CANSparkMax M_BottomRight {BottomRight, rev::CANSparkMax::MotorType::kBrushless}; 
 
   // The motors on the left side of the drive
-  frc::SpeedControllerGroup m_leftMotors{m_left1, m_left2};
+  frc::SpeedControllerGroup M_leftMotors{M_TopLeft, M_MiddleLeft, M_BottomLeft};
 
   // The motors on the right side of the drive
-  frc::SpeedControllerGroup m_rightMotors{m_right1, m_right2};
+  frc::SpeedControllerGroup M_rightMotors{M_TopRight, M_MiddleRight, M_BottomRight};
 
   // The robot's drive
-  frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
+  frc::DifferentialDrive m_drive{M_leftMotors, M_rightMotors};
 
   // The left-side drive encoder
   frc::Encoder m_leftEncoder;
