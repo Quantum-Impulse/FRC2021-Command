@@ -12,12 +12,13 @@ DriveSubsystem::DriveSubsystem()
       M_MiddleRight{MiddleRight, rev::CANSparkMax::MotorType::kBrushless},
       M_BottomLeft{BottomLeft, rev::CANSparkMax::MotorType::kBrushless},
       M_BottomRight{BottomRight, rev::CANSparkMax::MotorType::kBrushless},
-      m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1]},
-      m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1]},
-      m_odometry{m_gyro.GetRotation2d()} {
+      m_odometry{ahrs.GetRotation2d()} {
   // Set the distance per pulse for the encoders
-  m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
-  m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
+  LeftEncoder = M_MiddleLeft.GetEncoder();
+  RightEncoder = M_MiddleRight.GetEncoder();
+  
+  LeftEncoder.SetPositionConversionFactor(kEncoderDistancePerPulse);
+  RightEncoder.SetPositionConversionFactor(kEncoderDistancePerPulse);
 
   ResetEncoders();
 }
@@ -25,8 +26,8 @@ DriveSubsystem::DriveSubsystem()
 void DriveSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
   m_odometry.Update(m_gyro.GetRotation2d(),
-                    units::meter_t(m_leftEncoder.GetDistance()),
-                    units::meter_t(m_rightEncoder.GetDistance()));
+                    units::meter_t(LeftEncoder.GetDistance()),
+                    units::meter_t(RightEncoder.GetDistance()));
 }
 
 void DriveSubsystem::ArcadeDrive(double fwd, double rot) {
@@ -34,8 +35,8 @@ void DriveSubsystem::ArcadeDrive(double fwd, double rot) {
 }
 
 void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right) {
-  m_leftMotors.SetVoltage(left);
-  m_rightMotors.SetVoltage(-right);
+  M_leftMotors.SetVoltage(left);
+  M_rightMotors.SetVoltage(-right);
   m_drive.Feed();
 }
 

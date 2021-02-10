@@ -34,6 +34,8 @@ namespace DriveConstants {
     constexpr auto kTrackwidth = 1.442_m;
     extern const frc::DifferentialDriveKinematics kDriveKinematics;
 
+    constexpr int kEncoderCPR = 42;
+
     // Reasonable baseline values for a RAMSETE follower in units of meters and
     // seconds
     constexpr double kRamseteB = 2;

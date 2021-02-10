@@ -142,10 +142,15 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // The right-side drive encoder
   frc::Encoder m_rightEncoder;
 */
+rev::CANEncoder LeftEncoder ;
+rev::CANEncoder RightEncoder ;
+
+ // The gyro sensor
+  frc::ADXRS450_Gyro m_gyro;
 
 
   //Nav-XMP board (This contains the Gyro Sensor)
-  AHRS ahrs{SPI::Port::kMXP};
+  AHRS ahrs{frc::SPI::Port::kMXP};
   
   // Odometry class for tracking robot pose
   frc::DifferentialDriveOdometry m_odometry;
